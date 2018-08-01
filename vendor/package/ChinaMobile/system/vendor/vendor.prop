@@ -1,0 +1,56 @@
+#Ignore srv_domain in CAMPED state
+persist.radio.ignore_dom_time = 5
+
+#Block out of service indication
+persist.telephony.oosisdc = false
+
+#Enable primarycard feature
+persist.radio.primarycard=true
+persist.radio.primary_7_5_mode=true
+
+persist.radio.network_feature = 2
+#
+# PROPERTIES FOR IMS
+#
+persist.radio.ims.cmcc = true
+persist.radio.calls.on.ims = true
+persist.radio.jbims = 1
+persist.radio.VT_ENABLE = 1
+persist.radio.VT_HYBRID_ENABLE = 1
+persist.dbg.ims_volte_enable=1
+persist.radio.videopause.mode=1
+persist.data.iwlan.enable=true
+
+#Property to enable security check
+persist.sys.strict_op_enable=true
+
+persist.radio.phone.matchnum=11
+persist.radio.rat_on=combine
+persist.env.contacts.autosync=true
+
+#Disable UsbSecurity
+#persist.sys.usb.config=charging
+#persist.sys.usb.security=true
+#persist.sys.sim.activate=false
+
+#Property to set CMCC mode
+persist.radio.carrier_mode=cmcc
+
+#Property to add hardcoded ecc number in no card case
+persist.radio.ecc_hard_count=1
+persist.radio.ecc_hard_1=120,119,110,122
+
+#Property to enable emergeny button on non-secure lock screen
+persist.radio.emgcy_btn_onswipe=true
+
+# Property to force the message to be sent on CDMA dedicated channel
+persist.vendor.radio.force_on_dc=true
+
+# Property for default Time Zone
+persist.sys.timezone=Asia/Shanghai
+
+# Property to enable NFC default
+persist.sys.sw.defnfc=false
+
+#property to stop imsrcsd
+persist.rcs.supported=0

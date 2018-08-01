@@ -1,0 +1,231 @@
+#Copyright (c) 2015-2016 Qualcomm Technologies, Inc.
+#All Rights Reserved.
+#Confidential and Proprietary - Qualcomm Technologies, Inc.
+#tc num:
+#[INPUT]  main-mic:1   sub-mic:3  headset-mic:5
+#[OUTPUT] receiver:2   speaker:4  headphones:6   
+#AFE loopback: [INPUT] [OUTPUT] 7
+#codec loopback:[INPUT] [OUTPUT] 8
+#extern loopback£º[INPUT] [OUTPUT] 9
+#record£º[INPUT] [INPUT] [INPUT]
+#playback:[OUTPUT] [OUTPUT] [OUTPUT]
+
+
+tc 444
+#Speaker Device
+!Playback
+Rxdevice:0
+
+enable
+Adsp Working Mode:3
+Boost Output Voltage:10V
+QUIN_MI2S_RX Audio Mixer MultiMedia1:1
+
+disable
+Adsp Working Mode:0
+Boost Output Voltage:6.5V
+QUIN_MI2S_RX Audio Mixer MultiMedia1:0
+
+tc 127
+#Handset Mic to Earpiece AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC1
+RX1 MIX1 INP1:RX1
+RDAC2 MUX:RX1
+EAR_S:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RDAC2 MUX:ZERO
+EAR_S:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 147
+#HandSet Mic to Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:44
+
+enable
+DEC1 MUX:ADC1
+Boost Output Voltage:10V
+QUIN_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+Boost Output Voltage:6.5V
+QUIN_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 167
+# AMIC1 to Headset Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC1
+RX1 MIX1 INP1:RX1
+RX2 MIX1 INP1:RX1
+RDAC2 MUX:RX2
+HPHL:Switch
+HPHR:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RX2 MIX1 INP1:ZERO
+RDAC2 MUX:ZERO
+HPHL:ZERO
+HPHR:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 327
+# sub-mic to Handset Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP3
+RX1 MIX1 INP1:RX1
+RDAC2 MUX:RX1
+EAR_S:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RDAC2 MUX:ZERO
+EAR_S:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 347
+# sub-mic to Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:44
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP3
+Boost Output Voltage:10V
+QUIN_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+Boost Output Voltage:6.5V
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 367
+#sub-Mic to Headset Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP3
+RX1 MIX1 INP1:RX1
+RX2 MIX1 INP1:RX1
+RDAC2 MUX:RX2
+HPHL:Switch
+HPHR:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+RDAC2 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RX2 MIX1 INP1:ZERO
+HPHL:ZERO
+HPHR:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 527
+#HeadSet Mic to Handset Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP2
+RX1 MIX1 INP1:RX1
+RDAC2 MUX:RX1
+EAR_S:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RDAC2 MUX:ZERO
+EAR_S:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 547
+# HeadSet Mic to Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:44
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP2
+Boost Output Voltage:10V
+QUIN_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+Boost Output Voltage:6.5V
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
+
+tc 567
+#HeadSet Mic to Headset Speakers AFE loopback
+!AfeLoop
+Txdevice:11
+Rxdevice:5
+
+enable
+DEC1 MUX:ADC2
+ADC2 MUX:INP2
+RX1 MIX1 INP1:RX1
+RX2 MIX1 INP1:RX1
+RDAC2 MUX:RX2
+HPHL:Switch
+HPHR:Switch
+EAR PA Gain:POS_6_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:1
+
+disable
+DEC1 MUX:ZERO
+ADC2 MUX:ZERO
+RDAC2 MUX:ZERO
+RX1 MIX1 INP1:ZERO
+RX2 MIX1 INP1:ZERO
+HPHL:ZERO
+HPHR:ZERO
+EAR PA Gain:POS_1.5_DB
+PRI_MI2S_RX Port Mixer TERT_MI2S_TX:0
